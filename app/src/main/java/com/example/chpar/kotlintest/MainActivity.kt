@@ -6,7 +6,8 @@ import android.os.Bundle
 class MainActivity : AppCompatActivity() {
 
     // -- 단어 --
-    // expression = 값을 반환하는 형태
+    // expression = 식, 값을 반환하는 형태
+    // property(프로퍼티) = 사용은 필드(멤버변수 or 전역변수로 불림), 내부적으로는 메소드처럼 사용, 일일이 getter/setter를 안써도 된다.
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -151,36 +152,28 @@ class MainActivity : AppCompatActivity() {
         // 'in' 연산자를 사용해서 콜렉션이 객체를 포함하고 있는지 검사
         if(text in names)
         print("Yes")
-        //콜렉션을 필터링하고 변환(맵)할 때 람다식 사용하기
+        //콜렉션을 필터링하고 변환(맵)할 때 람다식 사용하는 법
         names.filter { it.startsWith("A") }
                 .sortedBy { it }
                 .map { it.toUpperCase() }
                 .forEach { print(it) }
     }
 
+    // 이디엄(idioms : 둘 이상의 단어들이 연결되어 그 단어들이 가지는 본뜻 이외의 특별한 의미를 나타내는 관용어, 숙어)
+    // 자주 사용하는 코딩 방식을 뜻함
+
+    // 1) DTO(Data Transfer Object) 만들기(POJO / POCO)
+    // 코틀린은 getter/setter 쓸 필요 없음 (별도의 data class를 제공)
+    // 이 코드는 다음 기능을 가진 Customer 클래스를 제공
+    // - 모든 프로퍼티에 대한 getter (var 프로퍼티는 setter 포함)
+    // - 모든 프로퍼티에 대해 component1(), component2(),...
+    // - equals(), - hashCode(), - toString(), - copy()
+    data class Customer(val name: String, val email: String)
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 }
